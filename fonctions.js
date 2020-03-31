@@ -23,7 +23,11 @@ $(document).ready(function () {
     $('#validate').click(function () {
         let selectedValue = $('#lang').val();
         let selectedName = $('#lang option:selected').text();
+        let nameOfOption = $('#lang option:selected').attr("name");
+        console.log(nameOfOption);
         console.log(selectedValue);
         console.log(selectedName);
+        window.location.href = "./jeu.html"+"?quizId="+nameOfOption;
     });
 });
+// fin étape 2
