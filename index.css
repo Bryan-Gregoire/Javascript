@@ -1,0 +1,43 @@
+html, body{
+    height: 100%;
+}
+body{
+    display: grid;
+    grid-template-columns: 140px auto;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "header header"
+    "main main"
+    "footer footer";
+    margin: 0px;
+}
+header{
+    grid-area: header;
+    text-align: center;
+    background-color: #FF5733;
+    font-family: cursive;
+    font-style: italic;
+    font-variant: unset;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+main{
+    grid-area: main;
+    font-family: cursive;
+    font-style: italic;
+    font-variant: unset;
+
+}
+#main {
+    margin-left: 20px;
+}
+
+footer{
+    grid-area: footer;
+    font-family: cursive;
+    font-style: italic;
+    font-variant: unset;
+    text-decoration: overline;
+    margin: 20px;
+    height: 30px;
+}
