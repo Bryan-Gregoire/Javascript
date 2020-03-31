@@ -28,6 +28,9 @@ $(document).ready(function () {
         console.log(selectedValue);
         console.log(selectedName);
         window.location.href = "./jeu.html"+"?quizId="+nameOfOption;
+
+        // "?" veut dire démarrage des paramètres.
+        // "&" si je veut rajouter des paramètres.
     });
 });
 // fin étape 2
