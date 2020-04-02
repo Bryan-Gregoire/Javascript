@@ -46,7 +46,7 @@ $(document).ready(function () {
     mots = shuffle(mots);
     console.log(mots);
     for (let index = 0; index < mots.length; index++) {
-        let buts = $('<button id = bouton></button');
+        let buts = $('<button type = button  Class = bouton></button>');
         $('#mots').append(buts.text(mots[index])); // Inserer les boutons avec les mots dedans.
     }
 });
@@ -68,3 +68,20 @@ function shuffle(array) {
     return array;
 }
 // Step 6 end.
+
+/**
+ * Step 7
+ * Move a buttom from one container to another one.
+ */
+$(document).ready(function () {
+    $('.bouton').click(function () {
+        if ($(this).hasClass('clicked')) {
+            $(this).removeClass('clicked');
+            $('#mots').append($(this))
+        } else {
+            $('#contain').append($(this));
+            $(this).addClass('clicked');
+        }
+    });
+});
+// Step 7 end.

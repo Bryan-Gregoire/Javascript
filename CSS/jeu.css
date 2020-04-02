@@ -45,6 +45,9 @@ main {
     width: 1200px;
     height: 60px;
 }
+#contain button {
+    margin-left: 10px;
+}
 #buts {
     background-color: #FF5733;
     border: solid;
