@@ -1,13 +1,20 @@
-// étape 1
+/**
+ * Step 1.
+ * Display all descriptions of data.
+ */
 function displayDescription() {
     for (let i = 0; i < data.length; i++) {
         console.log(data[i].description);
         console.log(data[i].id);
     }
 }
-// fin étape 1
+// Step 1 end.
 
-// étape 2
+/**
+ * Step 2.
+ * Complete the form.
+ * Display the description of data.
+ */
 $(document).ready(function () {
     for (let index = 0; index < data.length; index++) {
         let element = data[index].id;
@@ -19,6 +26,10 @@ $(document).ready(function () {
     }
 });
 
+/**
+ * Step 2.
+ * Send to a new page if there is a click.
+ */
 $(document).ready(function () {
     $('#validate').click(function () {
         let selectedValue = $('#lang').val();
@@ -33,4 +44,4 @@ $(document).ready(function () {
         // "&" si je veut rajouter des paramètres.
     });
 });
-// fin étape 2
+// Step 2 end.
