@@ -57,7 +57,19 @@ main {
     color: white;
     border-color: coral;
     margin-top: 20px;
+
 }
+
+#nextQuestion{
+    background-color: #FF5733;
+    border: solid;
+    height: 25px;
+    color: white;
+    border-color: coral;
+    margin-top: 20px;
+}
+
+
 #mots button {
     margin-right: 10px;
 }
