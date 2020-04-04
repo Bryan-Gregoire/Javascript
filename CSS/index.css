@@ -37,6 +37,10 @@ main{
 main button {
     background-color: #FF5733;
     border: solid;
+    height: 25px;
+    color: white;
+    border-color: coral;
+    margin-top: 20px;
 }
 
 footer{
