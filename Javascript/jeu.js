@@ -196,7 +196,7 @@ function actionOnNextQuestion() {
 function totalnbQuestion() {
     for (let i = 0; i < data.length; i++) {
         if (nom == data[i].id) {
-            return data[i].questions.length-1;
+            return data[i].questions.length - 1;
         }
     }
 }
@@ -212,6 +212,12 @@ function lastQuestionVerif() {
     $('#otherQuiz').show();          // Je fais apparaitre le bouton choisir un autre quiz.
     $('#endResult').show();          // Je fais apparaitre le texte du résultat finale.
     $('#result').text(nbGoodAnswer); // J'écris le nombre de bonne réponse trouver.
+    $('#tryAgain').click(function () {
+        window.location.href = "jeu.html" + "?quizId=" + nom;
+    });
+    $('#otherQuiz').click(function () {
+        window.location.href = "index.html";
+    });
 }
 
 $(document).ready(function () {
