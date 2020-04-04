@@ -6,7 +6,7 @@ let nom = new URL(location.href).searchParams.get("quizId");
 console.log("l'id choisis : " + nom);
 // Step 3 end.
 
-let nbQst = 0; // Numéro de la question.
+let nbQst = 0;        // Numéro de la question.
 let nbGoodAnswer = 0; // Nombre de réponses correctes.
 
 /**
@@ -16,7 +16,8 @@ let nbGoodAnswer = 0; // Nombre de réponses correctes.
 $(document).ready(function () {
     for (let i = 0; i < data.length; i++) {
         if (nom == data[i].id) {
-            $('#thème').text(data[i].description); // afficher le thème.
+            $('#thème').text(data[i].description);                 // afficher le thème.
+            $('#numbersQuestion').text(data[i].questions.length);  // J'écris le nombre de questions au total.
             break;
         }
     }
@@ -92,9 +93,12 @@ function moveWords() {
  * Checks and displays if the answer is correct when the user clicks on the verify button.
  */
 $(document).ready(function () {
-    $('#win').hide(); // Je cache le message gagnant.
-    $('#lose').hide(); // Je cache le message perdant.
+    $('#win').hide();           // Je cache le message gagnant.
+    $('#lose').hide();          // Je cache le message perdant.
     $('#nextQuestion').hide();  // Je cache le bouton question suivante.
+    $('#endResult').hide();     // Je cache le resultat final.
+    $('#tryAgain').hide();       // Je cache le bouton recommencer le quiz.
+    $('#otherQuiz').hide();     // Je cache le bouton choisir un autre quiz./ 
 });
 /**
  * Compare 2 arrays. Return true if they are the same, else false.
@@ -158,6 +162,12 @@ function actionOnVerif() {
         $('.bouton').attr("disabled", true);   // Je désactive les mots bouton.
         $('#buts').hide();                     // Je cache le bouton verifier.
         $('#nextQuestion').show();             // Je fais apparraitre le bouton question suivante.
+        console.log("La question numéro : " + nbQst);
+        let nbQuestion = totalnbQuestion();
+        console.log("Le nombre total de question: " + nbQuestion);
+        if (nbQst == nbQuestion) {
+            lastQuestionVerif();
+        }
         answer = "";
     });
 }
@@ -179,6 +189,31 @@ function actionOnNextQuestion() {
         moveWords();
     });
 }
+
+/**
+ * Return the total number of questions.
+ */
+function totalnbQuestion() {
+    for (let i = 0; i < data.length; i++) {
+        if (nom == data[i].id) {
+            return data[i].questions.length-1;
+        }
+    }
+}
+
+/**
+ * When checking the last question.
+ * 
+ */
+function lastQuestionVerif() {
+    $('#nextQuestion').hide();       // Je cache le bouton question suivante.
+    $('#buts').hide();               // Je cache le bouton verifier.
+    $('#tryAgain').show();           // Je fais apparaitre le bouton recommencer le quiz.
+    $('#otherQuiz').show();          // Je fais apparaitre le bouton choisir un autre quiz.
+    $('#endResult').show();          // Je fais apparaitre le texte du résultat finale.
+    $('#result').text(nbGoodAnswer); // J'écris le nombre de bonne réponse trouver.
+}
+
 $(document).ready(function () {
     DisplayElements();
     moveWords();

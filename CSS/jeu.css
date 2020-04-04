@@ -33,6 +33,7 @@ main {
 
 #content {
     margin-left: 20px;
+    margin-bottom: 20px;
 }
 #question {
     font-family: serif;
@@ -58,6 +59,24 @@ main {
     border-color: coral;
     margin-top: 20px;
 
+}
+
+#tryAgain {
+    background-color: #FF5733;
+    border: solid;
+    height: 25px;
+    color: white;
+    border-color: coral;
+    margin-top: 20px;
+}
+
+#otherQuiz {
+    background-color: #FF5733;
+    border: solid;
+    height: 25px;
+    color: white;
+    border-color: coral;
+    margin-top: 20px;
 }
 
 #nextQuestion{
