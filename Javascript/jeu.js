@@ -46,7 +46,6 @@ function DisplayElements() {
     let mots = texte.split(' ');   // Tableau qui est composé de chaque mot de texte séparé par un espace.
     mots = shuffle(mots);
     for (let index = 0; index < mots.length; index++) {
-        console.log("for display");
         let buts = $('<button type = button Class = bouton></button>');
         $('#mots').append(buts.text(mots[index])); // Inserer les boutons avec les mots dedans.
     }
@@ -76,15 +75,12 @@ function shuffle(array) {
  */
 function moveWords() {
     $('.bouton').click(function () {
-        //console.log("enter move");
         if ($(this).hasClass('clicked')) {
             $(this).removeClass('clicked');
             $('#mots').append($(this))
-            //console.log("enter clicked");
         } else {
             $('#contain').append($(this));
             $(this).addClass('clicked');
-            //console.log("enter else");
         }
     });
 }
@@ -102,59 +98,49 @@ $(document).ready(function () {
 });
 
 function actionOnVerif() {
-    console.log("1. action");
     let answer = " ";
-    console.log("test1 qst dans action question "+nbQst+" taille data "+data.length);
-    //console.log("data length "+data.length);
     for (let i = 0; i < data.length; i++) {
-        console.log(nom);
         if (nom == data[i].id) {
-            //console.log("dans nom = data "+data[i].id);
             answer = data[i].questions[nbQst].answer; // Je prend la bonne réponse a la question.
             break;
         }
     }
-    console.log("2.display correct answer");
     $('#correctAnswer').text(answer);
     $('#buts').click(function () {
-        console.log("3. start verification quest "+nbQst+" answer :"+answer);
-        //console.log(answer);
         let elt = $('#contain').children();   // je créer un tableau de tous les bouton clicker.
         let givenAnswer = [];
-        let correct = false;
+        let correct = true;
         elt.each(function () {
             givenAnswer.push($(this).text());    // Tableau du texte que contient les boutons clicker.
         });
-        console.log("4. start split");
-        //console.log(answer);
         answer = answer.split(" ");
-        //console.log(answer);
-        if(givenAnswer == null){
+        if (givenAnswer == null) {
             correct = false;
         }
-        //console.log("4");
         if (answer.length != givenAnswer.length) {     // je compare la bonne réponse avec la réponse donné.
-            $('#lose').show();
+            correct = false;
         }
-        //console.log("5");
-        for (let i = 0; i < answer.length; i++) {
-            if (answer[i] != givenAnswer[i]) {
-                correct = false;
-                break;
-            } else {
-                correct = true;
+        if (correct == true) {                               // FAIRE UNE FONCTION POUR CA POUR CA.
+            for (let i = 0; i < answer.length; i++) {
+                if (answer[i] != givenAnswer[i]) {
+                    correct = false;
+                    break;
+                } else {
+                    correct = true;
+                }
             }
         }
         if (correct == true) {
-            $('#win').show();  // Si la réponse donné est correcte, j'affiche un message
+            $('#win').show();  // Si la réponse donné est correcte, j'affiche un message gagnant
             nbGoodAnswer++;
-        } else {               // Sinon je lui dis 
+        } else {               // Sinon j'affiche un message perdant.
             $('#lose').show();
         }
         $('.bouton').attr("disabled", true);
         $('#buts').hide();
         $('#nextQuestion').show();
         answer = "";
+        correct = true;
     });
 }
 // Step 8 end.
@@ -165,9 +151,7 @@ function actionOnVerif() {
  */
 function actionOnNextQuestion() {
     $('#nextQuestion').click(function () {
-        console.log("incrementation qst dans onnextquestion avant "+nbQst);
         nbQst = nbQst + 1;  // J'incrémente le numéro de la question.
-        console.log("incrementation qst dans onnextquestion apres "+nbQst);
         $('#win').hide();  // Je cache le message gagnant.
         $('#lose').hide();  // Je cache le message perdant.
         $('#nextQuestion').hide();  // Je cache le bouton question suivante.
