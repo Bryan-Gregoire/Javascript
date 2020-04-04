@@ -109,6 +109,14 @@ main {
     height: 25px;
 }
 
+#result {
+    text-decoration: underline;
+}
+
+#numbersQuestion {
+    text-decoration: underline;
+}
+
 footer{
     grid-area: footer;
     background-color: #FF5733;

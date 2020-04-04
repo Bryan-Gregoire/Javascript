@@ -45,6 +45,8 @@ main button {
     color: white;
     border-color: coral;
     margin-top: 20px;
+    margin-left: 20px;
+    width: 100px;
 }
 
 footer{

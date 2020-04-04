@@ -13,7 +13,7 @@ let nbGoodAnswer = 0; // Nombre de réponses correctes.
  * Step 4.
  * Display the theme of the chosen quiz.
  */
-$(document).ready(function () {
+function displayTheme () {
     for (let i = 0; i < data.length; i++) {
         if (nom == data[i].id) {
             $('#thème').text(data[i].description);                 // afficher le thème.
@@ -21,7 +21,7 @@ $(document).ready(function () {
             break;
         }
     }
-});
+}
 // Step 4 end.
 
 /**
@@ -31,7 +31,7 @@ $(document).ready(function () {
  * Shuffle the array
  * Insert the buttons with each element of the table in it.
  */
-function DisplayElements() {
+function displayElements() {
     let answ = " ";
     let extras = " ";
     for (let i = 0; i < data.length; i++) {
@@ -164,9 +164,7 @@ function actionOnVerif() {
         $('.bouton').attr("disabled", true);   // Je désactive les mots bouton.
         $('#buts').hide();                     // Je cache le bouton verifier.
         $('#nextQuestion').show();             // Je fais apparraitre le bouton question suivante.
-        console.log("La question numéro : " + nbQst);
         let nbQuestion = totalnbQuestion();
-        console.log("Le nombre total de question: " + nbQuestion);
         if (nbQst == nbQuestion) {
             lastQuestionVerif();
         }
@@ -187,7 +185,7 @@ function actionOnNextQuestion() {
         $('#nextQuestion').hide();// Je cache le bouton question suivante.
         $('.bouton').remove();    // Je supprime les boutons.
         $('#buts').show();        // Je réaffiche le bouton verifier pour que l'utilisateur vérifie sa réponse.
-        DisplayElements();
+        displayElements();
         moveWords();
     });
 }
@@ -225,7 +223,8 @@ function lastQuestionVerif() {
 // step 10 end.
 
 function main() {
-    DisplayElements();
+    displayTheme();
+    displayElements();
     moveWords();
     actionOnVerif();
     actionOnNextQuestion();
