@@ -94,6 +94,11 @@ main {
     margin-right: 10px;
 }
 
+.bouton {
+    background-color: gold;
+    border-color: coral;
+}
+
 #win {
     background-color: green;
     color: white;
