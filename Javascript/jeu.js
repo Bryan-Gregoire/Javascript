@@ -31,8 +31,8 @@ $(document).ready(function () {
  * Insert the buttons with each element of the table in it.
  */
 function DisplayElements() {
-    let answ;
-    let extras;
+    let answ = " ";
+    let extras = " ";
     for (let i = 0; i < data.length; i++) {
         if (nom == data[i].id) {
             $('#question').text(data[i].questions[nbQst].question) // afficher la question.
@@ -96,17 +96,50 @@ $(document).ready(function () {
     $('#lose').hide(); // Je cache le message perdant.
     $('#nextQuestion').hide();  // Je cache le bouton question suivante.
 });
+/**
+ * Compare 2 arrays. Return true if they are the same, else false.
+ * 
+ * @param {*} ans 
+ * @param {*} givAns 
+ */
+function verifResult(ans, givAns) {
+    if (givAns == null) {
+        return false;
+    }
+    if (ans.length != givAns.length) {
+        return false;
+    }
+    for (let i = 0; i < ans.length; i++) {
+        if (ans[i] != givAns[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
-function actionOnVerif() {
-    let answer = " ";
+/**
+ * Return the current answer for the current question.
+ * 
+ */
+function answerCurrentQuestion() {
+    let answer;
     for (let i = 0; i < data.length; i++) {
         if (nom == data[i].id) {
             answer = data[i].questions[nbQst].answer; // Je prend la bonne réponse a la question.
             break;
         }
     }
-    $('#correctAnswer').text(answer);
+    return answer;
+}
+
+/**
+ * Check if the answer given is correct, display a message depending on the result.
+ * 
+ */
+function actionOnVerif() {
     $('#buts').click(function () {
+        let answer = answerCurrentQuestion();
+        $('#correctAnswer').text(answer);
         let elt = $('#contain').children();   // je créer un tableau de tous les bouton clicker.
         let givenAnswer = [];
         let correct = true;
@@ -114,33 +147,18 @@ function actionOnVerif() {
             givenAnswer.push($(this).text());    // Tableau du texte que contient les boutons clicker.
         });
         answer = answer.split(" ");
-        if (givenAnswer == null) {
-            correct = false;
-        }
-        if (answer.length != givenAnswer.length) {     // je compare la bonne réponse avec la réponse donné.
-            correct = false;
-        }
-        if (correct == true) {                               // FAIRE UNE FONCTION POUR CA POUR CA.
-            for (let i = 0; i < answer.length; i++) {
-                if (answer[i] != givenAnswer[i]) {
-                    correct = false;
-                    break;
-                } else {
-                    correct = true;
-                }
-            }
-        }
+        correct = verifResult(answer, givenAnswer);
         if (correct == true) {
             $('#win').show();  // Si la réponse donné est correcte, j'affiche un message gagnant
             nbGoodAnswer++;
-        } else {               // Sinon j'affiche un message perdant.
+        }
+        if (correct == false) {               // Sinon j'affiche un message perdant.
             $('#lose').show();
         }
-        $('.bouton').attr("disabled", true);
-        $('#buts').hide();
-        $('#nextQuestion').show();
+        $('.bouton').attr("disabled", true);   // Je désactive les mots bouton.
+        $('#buts').hide();                     // Je cache le bouton verifier.
+        $('#nextQuestion').show();             // Je fais apparraitre le bouton question suivante.
         answer = "";
-        correct = true;
     });
 }
 // Step 8 end.
@@ -158,7 +176,6 @@ function actionOnNextQuestion() {
         $('.bouton').remove(); // Je supprime les boutons.
         $('#buts').show();  // Je réaffiche le bouton verifier pour que l'utilisateur vérifie sa réponse.
         DisplayElements();
-        actionOnVerif();
         moveWords();
     });
 }
