@@ -224,9 +224,9 @@ function lastQuestionVerif() {
 }
 // step 10 end.
 
-$(document).ready(function () {
+function main() {
     DisplayElements();
     moveWords();
     actionOnVerif();
     actionOnNextQuestion();
-});
+}
