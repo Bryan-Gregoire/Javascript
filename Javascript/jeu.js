@@ -36,16 +36,16 @@ function DisplayElements() {
     let extras = " ";
     for (let i = 0; i < data.length; i++) {
         if (nom == data[i].id) {
-            $('#question').text(data[i].questions[nbQst].question) // afficher la question.
-            $('#number').text(nbQst + 1); // Afficher le numéro de la question.
-            answ = data[i].questions[nbQst].answer;  // la réponse.
-            extras = data[i].questions[nbQst].extras;  // Les extras.
+            $('#question').text(data[i].questions[nbQst].question)   // afficher la question.
+            $('#number').text(nbQst + 1);                            // Afficher le numéro de la question.
+            answ = data[i].questions[nbQst].answer;                  // la réponse.
+            extras = data[i].questions[nbQst].extras;                // Les extras.
             break;
         }
     }
     let texte = answ + " " + extras; // Contien la réponse et les extras.
-    let mots = texte.split(' ');   // Tableau qui est composé de chaque mot de texte séparé par un espace.
-    mots = shuffle(mots);
+    let mots = texte.split(' ');     // Tableau qui est composé de chaque mot de texte séparé par un espace.
+    mots = shuffle(mots);            // Mélanger le tableau de mots.
     for (let index = 0; index < mots.length; index++) {
         let buts = $('<button type = button Class = bouton></button>');
         $('#mots').append(buts.text(mots[index])); // Inserer les boutons avec les mots dedans.
@@ -73,6 +73,7 @@ function shuffle(array) {
 /**
  * Step 7
  * Move a buttom from one container to another one.
+ * 
  */
 function moveWords() {
     $('.bouton').click(function () {
@@ -91,6 +92,7 @@ function moveWords() {
 /**
  * Step 8.
  * Checks and displays if the answer is correct when the user clicks on the verify button.
+ * 
  */
 $(document).ready(function () {
     $('#win').hide();           // Je cache le message gagnant.
@@ -148,12 +150,12 @@ function actionOnVerif() {
         let givenAnswer = [];
         let correct = true;
         elt.each(function () {
-            givenAnswer.push($(this).text());    // Tableau du texte que contient les boutons clicker.
+            givenAnswer.push($(this).text()); // Tableau du texte que contient les boutons clicker.
         });
         answer = answer.split(" ");
         correct = verifResult(answer, givenAnswer);
         if (correct == true) {
-            $('#win').show();  // Si la réponse donné est correcte, j'affiche un message gagnant
+            $('#win').show();                 // Si la réponse donné est correcte, j'affiche un message gagnant
             nbGoodAnswer++;
         }
         if (correct == false) {               // Sinon j'affiche un message perdant.
@@ -179,12 +181,12 @@ function actionOnVerif() {
  */
 function actionOnNextQuestion() {
     $('#nextQuestion').click(function () {
-        nbQst = nbQst + 1;  // J'incrémente le numéro de la question.
-        $('#win').hide();  // Je cache le message gagnant.
-        $('#lose').hide();  // Je cache le message perdant.
-        $('#nextQuestion').hide();  // Je cache le bouton question suivante.
-        $('.bouton').remove(); // Je supprime les boutons.
-        $('#buts').show();  // Je réaffiche le bouton verifier pour que l'utilisateur vérifie sa réponse.
+        nbQst = nbQst + 1;        // J'incrémente le numéro de la question.
+        $('#win').hide();         // Je cache le message gagnant.
+        $('#lose').hide();        // Je cache le message perdant.
+        $('#nextQuestion').hide();// Je cache le bouton question suivante.
+        $('.bouton').remove();    // Je supprime les boutons.
+        $('#buts').show();        // Je réaffiche le bouton verifier pour que l'utilisateur vérifie sa réponse.
         DisplayElements();
         moveWords();
     });
@@ -202,23 +204,25 @@ function totalnbQuestion() {
 }
 
 /**
+ * Step 10
  * When checking the last question.
  * 
  */
 function lastQuestionVerif() {
-    $('#nextQuestion').hide();       // Je cache le bouton question suivante.
-    $('#buts').hide();               // Je cache le bouton verifier.
-    $('#tryAgain').show();           // Je fais apparaitre le bouton recommencer le quiz.
-    $('#otherQuiz').show();          // Je fais apparaitre le bouton choisir un autre quiz.
-    $('#endResult').show();          // Je fais apparaitre le texte du résultat finale.
-    $('#result').text(nbGoodAnswer); // J'écris le nombre de bonne réponse trouver.
-    $('#tryAgain').click(function () {
+    $('#nextQuestion').hide();              // Je cache le bouton question suivante.
+    $('#buts').hide();                      // Je cache le bouton verifier.
+    $('#tryAgain').show();                  // Je fais apparaitre le bouton recommencer le quiz.
+    $('#otherQuiz').show();                 // Je fais apparaitre le bouton choisir un autre quiz.
+    $('#endResult').show();                 // Je fais apparaitre le texte du résultat finale.
+    $('#result').text(nbGoodAnswer);        // J'écris le nombre de bonne réponse trouver.
+    $('#tryAgain').click(function () {      // recommencer le quiz si click sur le bouton.
         window.location.href = "jeu.html" + "?quizId=" + nom;
     });
-    $('#otherQuiz').click(function () {
+    $('#otherQuiz').click(function () {     // Retourne sur la page d'acceuil pour choisir un autre quiz.
         window.location.href = "index.html";
     });
 }
+// step 10 end.
 
 $(document).ready(function () {
     DisplayElements();
