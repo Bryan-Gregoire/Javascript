@@ -13,7 +13,7 @@ let nbGoodAnswer = 0; // Nombre de réponses correctes.
  * Step 4.
  * Display the theme of the chosen quiz.
  */
-function displayTheme () {
+function displayTheme() {
     for (let i = 0; i < data.length; i++) {
         if (nom == data[i].id) {
             $('#thème').text(data[i].description);                 // afficher le thème.
@@ -229,3 +229,7 @@ function main() {
     actionOnVerif();
     actionOnNextQuestion();
 }
+
+$(document).ready(function () {
+    main();
+});
