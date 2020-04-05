@@ -32,6 +32,12 @@ main {
     font-variant: unset;
 }
 
+#thème {
+    font-style: italic;
+    font-family: initial;
+    font-weight: 600;
+}
+
 #content {
     margin-left: 20px;
     margin-bottom: 20px;
