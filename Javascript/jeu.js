@@ -88,20 +88,21 @@ function moveWords() {
 }
 // Step 7 end.
 
-
+// Step 8.
 /**
- * Step 8.
- * Checks and displays if the answer is correct when the user clicks on the verify button.
+ * 
+ * Hide everything that should not be displayed at the start
  * 
  */
-$(document).ready(function () {
+function hiddenElements() {
     $('#win').hide();           // Je cache le message gagnant.
     $('#lose').hide();          // Je cache le message perdant.
     $('#nextQuestion').hide();  // Je cache le bouton question suivante.
     $('#endResult').hide();     // Je cache le resultat final.
     $('#tryAgain').hide();       // Je cache le bouton recommencer le quiz.
     $('#otherQuiz').hide();     // Je cache le bouton choisir un autre quiz./ 
-});
+}
+
 /**
  * Compare 2 arrays. Return true if they are the same, else false.
  * 
@@ -223,6 +224,7 @@ function lastQuestionVerif() {
 // step 10 end.
 
 function main() {
+    hiddenElements();
     displayTheme();
     displayElements();
     moveWords();
