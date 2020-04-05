@@ -95,8 +95,9 @@ main {
 }
 
 .bouton {
-    background-color: gold;
-    border-color: coral;
+    background-color: #EA202C;
+    border-color: #EA202C;
+    color: white;
 }
 
 #win {
