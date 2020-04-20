@@ -1,0 +1,21 @@
+body, h1{
+    margin: 0px;
+}
+
+header{
+    text-align: center;
+    background-color:  #FF5733;
+    margin: 0px;
+    height: 100px;
+}
+
+main {
+    margin-top: 50px;
+}
+
+#scene {
+    width: 960px;
+    height: 600px;
+    border: solid;
+    margin: 0px auto;
+}
