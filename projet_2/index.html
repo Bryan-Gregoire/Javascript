@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>g53735</title>
     <link rel="stylesheet" href="CSS/accueil.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="javascript/model/Paddle.js"></script>
+    <script src="javascript/view/View.js"></script>
 </head>
+
 <body>
     <header>
-<h1>Casse Brique</h1>
-<h3>WEBG2-g53735-Bryan Gregoire</h3>
+        <h1>Casse Brique</h1>
+        <h3>WEBG2-g53735-Bryan Gregoire</h3>
     </header>
     <main>
         <div id="scene">
             <span id="raquette"></span>
         </div>
     </main>
+    <script>
+        let paddle = new Paddle(900);
+        let view = new View();
+        view.displayPaddle(paddle);
+        alert("Prêt à bouger la raquette à gauche ?");
+        paddle.moveTo(20);
+        view.displayPaddle(paddle);
+    </script>
 </body>
+
 </html>
