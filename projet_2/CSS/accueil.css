@@ -18,4 +18,14 @@ main {
     height: 600px;
     border: solid;
     margin: 0px auto;
+    position: relative;
+}
+
+#raquette {
+    width: 96px;
+    height: 16px;
+    background-color:#FF5733;
+    position: absolute;
+    bottom: 0px;
+    left: 50px;
 }
