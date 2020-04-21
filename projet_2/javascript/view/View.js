@@ -2,13 +2,13 @@
  * View of the paddle.
  */
 class View {
-    
+
     /**
      * Display the paddle.
      * 
      * @param {*} paddle the paddle.
      */
-    displayPaddle(paddle){
+    displayPaddle(paddle) {
         $('#raquette').css('left', paddle.left);
     }
 
@@ -17,7 +17,7 @@ class View {
      * at the left edge of the window.
      * 
      */
-    sceneLeft(){
+    sceneLeft() {
         return $("#scene").offset().left;
     }
 

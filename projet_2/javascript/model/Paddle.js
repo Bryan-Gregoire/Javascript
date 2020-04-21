@@ -9,15 +9,15 @@ class Paddle {
      * 
      * @param {*} left 
      */
-    constructor(left){
-        this.__left = left;
+    constructor(left) {
+        this.__left = this.moveInScene(left);
     }
 
     /**
      * Get the left.
      * 
      */
-    get left(){
+    get left() {
         return this.__left;
     }
 
@@ -26,7 +26,22 @@ class Paddle {
      * 
      * @param {*} left the left to set.
      */
-    moveTo(left){
-        this.__left = left;
+    moveTo(left) {
+        this.__left = this.moveInScene(left);
+    }
+
+    /**
+     * The paddle move in the scene.
+     * 
+     * @param {*} left the given left.
+     */
+    moveInScene(left) {
+        if (left < 0) {
+            return 0;
+        } else if (left > sceneWidth - paddleWidth) {
+            return sceneWidth - paddleWidth;
+        } else {
+            return left
+        }
     }
 }

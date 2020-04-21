@@ -23,7 +23,7 @@ class PaddleCtrl {
     */
     moveMouse(paddle, view, evt) {
         let pos = evt.clientX - view.sceneLeft();
-        paddle.moveTo(pos);
+        paddle.moveTo(pos - paddleWidth / 2);
         view.displayPaddle(paddle);
     }
 }
