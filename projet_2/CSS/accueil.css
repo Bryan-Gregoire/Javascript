@@ -7,18 +7,23 @@ header{
     background-color:  #FF5733;
     margin: 0px;
     height: 100px;
-}
-
-main {
-    margin-top: 50px;
+    color: white;
+    font-family: cursive;
+    font-style: italic;
+    font-variant: unset;
+    text-shadow: 1px 1px 1px black;
+    border-radius: 50px;
+    margin-top: 10px;
 }
 
 #scene {
     width: 960px;
     height: 600px;
     border: solid;
+    border-color: coral;
     margin: 0px auto;
     position: relative;
+    margin-top: 100px;
 }
 
 #raquette {
