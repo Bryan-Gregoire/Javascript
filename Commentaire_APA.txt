@@ -1,0 +1,8 @@
+Itération 1
+-------------
+
+Des méthodes ou attributs pour calculer le coté droit ou le centre de la raquette pourraient être utiles. Le code gagnerait en lisibilité et en modularité.
+
+Tu as travaillé avec un autre élève pour ce projet ?
+
+3,5/4
