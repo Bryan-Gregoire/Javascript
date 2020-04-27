@@ -1,23 +1,23 @@
 class Movement {
 
     constructor(deltaX, deltaY) {
-        this.__deltaX;
-        this.__deltaY;
+        this.__deltaX = deltaX;
+        this.__deltaY = deltaY;
     }
 
-    get getDeltaX() {
+    get deltaX() {
         return this.__deltaX;
     }
 
-    get getDeltaY() {
+    get deltaY() {
         return this.__deltaY;
     }
 
-    set setDeltaX(newDeltaX) {
-        this.__deltaX = this.__deltaX + newDeltaX;
+    set deltaX(newDeltaX) {
+        this.__deltaX = newDeltaX;
     }
 
-    set setDeltaY(newDeltaY) {
-        this.__deltaX = this.__deltaX + newDeltaX
+    set deltaY(newDeltaY) {
+        this.__deltaX = newDeltaY;
     }
 }

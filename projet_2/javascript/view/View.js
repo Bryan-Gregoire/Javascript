@@ -21,4 +21,8 @@ class View {
         return $("#scene").offset().left;
     }
 
+    displayBall(ball) {
+        $("#balle").css('left', ball.topLeft.x);
+        $("#balle").css('top', ball.topLeft.y);
+    }
 }
