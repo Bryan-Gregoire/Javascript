@@ -17,5 +17,21 @@ class Ball {
         let x = this.__topLeft.x + this.__movement.deltaX;
         let y = this.__topLeft.y + this.__movement.deltaY;
         this.__topLeft = new Position(x, y);
+        this.ballInScene(this.__topLeft);
+    }
+
+    ballInScene(position) {
+        if (position.x < 0) {
+            reverseX();
+        }
+        if (position.y < 0) {
+            reverseY();
+        }
+        if (position.x > sceneWidth) {
+            reverseX();
+        }
+        if (position.y > sceneWidth) {
+            reverseY();
+        }
     }
 }

@@ -20,4 +20,12 @@ class Movement {
     set deltaY(newDeltaY) {
         this.__deltaX = newDeltaY;
     }
+
+    reverseX() {
+        this.__deltaX = -this.__deltaX;
+    }
+
+    reverseY() {
+        this.__deltaY = -this.__deltaY;
+    }
 }
