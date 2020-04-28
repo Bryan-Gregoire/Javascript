@@ -1,12 +1,12 @@
 /** 
-* Contrôleur de la balle.
-* Propose des méthodes pour démarrer / arrêter la balle et la faire bouger.
+* Controller of the Ball.
+* Suggests methods to start / stop the ball and move it.
 */
 class BallCtrl {
 
     /**
-   * @param { Ball } ball - la balle à contrôler
-   * @param { View } view - la vue
+   * @param { Ball } ball - The ball to control.
+   * @param { View } view - The view.
    */
     constructor(game, view) {
         this._ball = game.ball;
@@ -15,7 +15,7 @@ class BallCtrl {
     }
 
     /**
-     * Démarre la balle.
+     * Start the ball.
      * 
      */
     start() {
@@ -23,7 +23,7 @@ class BallCtrl {
     }
 
     /**
-     * Déplace la balle d’un pas (défini par son mouvement) et rafraichit la vue.
+     * Move the ball one step (defined by its movement) and refresh the view.
      */
     move() {
         this._ball.move();
@@ -31,7 +31,7 @@ class BallCtrl {
     }
 
     /**
-     * Arrête la balle.
+     * Stop the ball.
      */
     stop() {
         clearInterval(this._moveListener);

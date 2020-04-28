@@ -22,9 +22,9 @@ class Paddle {
     }
 
     /**
-     * Set the left.
+     * Change the left.
      * 
-     * @param {*} left the left to set.
+     * @param {*} left the left to change.
      */
     moveTo(left) {
         this.__left = this.moveInScene(left);

@@ -1,6 +1,5 @@
 /**
  * The ball of the game.
- * 
  */
 class Ball {
 
