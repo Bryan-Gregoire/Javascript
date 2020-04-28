@@ -1,7 +1,7 @@
 class Game {
     constructor() {
-        this.__paddle = new Paddle(300);
-        this.__ball = new Ball(new Position(400, 500), new Movement(3, -2));
+        this.__paddle = new Paddle(sceneWidth / 2 - paddleWidth / 2);
+        this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -3));
     }
 
     get paddle() {
@@ -13,10 +13,19 @@ class Game {
     }
 
     paddleMove(centerX) {
-        centerX = this.paddle.moveTo(this.__paddle.left);
+        centerX = this.__paddle.moveTo();
     }
 
     ballMove() {
-        this.ball.move();
+        this.__ball.move();
+    }
+
+    randomPosX() {
+        let range = (sceneWidth - ballWidth) + 1;
+        return Math.trunc(Math.random() * range);
+    }
+
+    randomDeltaX() {
+        return (Math.random() * 6) -3;
     }
 }
