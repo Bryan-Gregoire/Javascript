@@ -21,6 +21,11 @@ class View {
         return $("#scene").offset().left;
     }
 
+    /**
+     * Display the ball.
+     * 
+     * @param {*} ball the ball.
+     */
     displayBall(ball) {
         $("#balle").css('left', ball.topLeft.x);
         $("#balle").css('top', ball.topLeft.y);
