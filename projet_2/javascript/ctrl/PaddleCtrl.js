@@ -9,7 +9,7 @@ class PaddleCtrl {
     * @param {Paddle} paddle : the paddle
     * @param {View} view : the view
     */
-    constructor(paddle, view) {
+    constructor(game, view) {
         view.displayPaddle(paddle);
         $(document).mousemove((evt) => this.moveMouse(paddle, view, evt));
     }

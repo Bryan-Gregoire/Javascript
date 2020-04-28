@@ -8,7 +8,7 @@ class BallCtrl {
    * @param { Ball } ball - la balle à contrôler
    * @param { View } view - la vue
    */
-    constructor(ball, view) {
+    constructor(game, view) {
         this._ball = ball;
         this._view = view;
         view.displayBall(ball);
