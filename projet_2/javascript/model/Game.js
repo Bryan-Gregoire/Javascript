@@ -1,7 +1,7 @@
 class Game {
     constructor() {
-        this.__paddle = Paddle;
-        this.__ball = Ball;
+        this.__paddle = new Paddle(300);
+        this.__ball = new Ball(new Position(400, 500), new Movement(3, -2));
     }
 
     get paddle() {

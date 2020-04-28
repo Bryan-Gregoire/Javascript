@@ -9,9 +9,9 @@ class BallCtrl {
    * @param { View } view - la vue
    */
     constructor(game, view) {
-        this._ball = ball;
+        this._ball = game.ball;
         this._view = view;
-        view.displayBall(ball);
+        view.displayBall(this._ball);
     }
 
     /**
