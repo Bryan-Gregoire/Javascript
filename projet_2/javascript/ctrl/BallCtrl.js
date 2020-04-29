@@ -5,13 +5,13 @@
 class BallCtrl {
 
     /**
-   * @param { Ball } ball - The ball to control.
+   * @param { Game } game - The game.
    * @param { View } view - The view.
    */
     constructor(game, view) {
-        this._ball = game.ball;
+        this._game = game;
         this._view = view;
-        view.displayBall(this._ball);
+        view.displayBall(this._game.ball);
     }
 
     /**
@@ -26,8 +26,8 @@ class BallCtrl {
      * Move the ball one step (defined by its movement) and refresh the view.
      */
     move() {
-        this._ball.move();
-        this._view.displayBall(this._ball);
+        this._game.ballMove();
+        this._view.displayBall(this._game.ball);
     }
 
     /**

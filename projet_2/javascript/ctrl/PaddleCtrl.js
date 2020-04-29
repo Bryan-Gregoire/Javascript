@@ -18,7 +18,7 @@ class PaddleCtrl {
     /**
     * Called when the mouse is moved.
     * It moves the paddle (horizontally) where the mouse is.
-    * @param {Paddle} paddle : the paddle
+    * @param {Game} game : the game
     * @param {View} view : the view
     * @param {MouseEvent} evt : the mouse event
     */
