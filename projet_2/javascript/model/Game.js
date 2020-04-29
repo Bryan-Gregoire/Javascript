@@ -58,5 +58,17 @@ class Game {
      */
     ballMove() {
         this.__ball.move();
+
+        let ballBottomLeftX = this.__ball.topLeft.x;
+        let ballBottomLeftY = this.__ball.topLeft.y + ballHeight;
+        let ballBottomRightX = this.__ball.topLeft.x + ballWidth;
+        let ballBottomRightY = this.__ball.topLeft.y + ballHeight;
+
+        let leftPaddle = this.__paddle.left; // A gauche du paddle.
+        let RightPaddle = leftPaddle + paddleWidth; // A droite du paddle.
+
+        if (ballBottomRightY >= paddleTopPos && (ballBottomRightX >= leftPaddle && ballBottomLeftX <= RightPaddle)) {
+            this.__ball.movement.reverseY();
+        }
     }
 }

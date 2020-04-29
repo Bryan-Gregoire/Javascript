@@ -4,3 +4,4 @@ const paddleHeight = 16;
 const sceneHeight = 600;
 const ballWidth = 24;
 const ballHeight = 24;
+const paddleTopPos = sceneHeight-paddleHeight;
