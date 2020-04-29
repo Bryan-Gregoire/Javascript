@@ -6,12 +6,13 @@ class PaddleCtrl {
 
     /**
     * Display the paddle and start controlling it with the mouse.
-    * @param {Paddle} paddle : the paddle
+    * @param {Game} game : the game
     * @param {View} view : the view
     */
     constructor(game, view) {
-        view.displayPaddle(game.paddle);
-        $(document).mousemove((evt) => this.moveMouse(game.paddle, view, evt));
+        this.__game = game;
+        view.displayPaddle(this.__game.paddle);
+        $(document).mousemove((evt) => this.moveMouse(this.__game.paddle, view, evt));
     }
 
     /**
@@ -21,9 +22,9 @@ class PaddleCtrl {
     * @param {View} view : the view
     * @param {MouseEvent} evt : the mouse event
     */
-    moveMouse(paddle, view, evt) {
+    moveMouse(game, view, evt) {
         let pos = evt.clientX - view.sceneLeft();
-        paddle.moveTo(pos - paddleWidth / 2);
-        view.displayPaddle(paddle);
+        this.__game.paddleMove(pos - paddleWidth / 2);
+        view.displayPaddle(this.__game.paddle);
     }
 }

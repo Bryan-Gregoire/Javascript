@@ -49,7 +49,7 @@ class Game {
      * @param {*} centerX the move of the paddle.
      */
     paddleMove(centerX) {
-        centerX = this.__paddle.moveTo();
+        this.__paddle.moveTo(centerX);
     }
 
     /**
