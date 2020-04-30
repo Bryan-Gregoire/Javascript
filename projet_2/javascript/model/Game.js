@@ -59,16 +59,47 @@ class Game {
     ballMove() {
         this.__ball.move();
 
-        let ballBottomLeftX = this.__ball.topLeft.x;
-        let ballBottomLeftY = this.__ball.topLeft.y + ballHeight;
-        let ballBottomRightX = this.__ball.topLeft.x + ballWidth;
-        let ballBottomRightY = this.__ball.topLeft.y + ballHeight;
+        let ballBottomLeftX = this.__ball.topLeft.x;                    // Coin en bas a gauche de la balle( le x).
+        let ballBottomLeftY = this.__ball.topLeft.y + ballHeight;       // Coin en bas a gauche de la balle(le y ).   
+        let ballBottomRightX = this.__ball.topLeft.x + ballWidth;       // Coin en bas a droite de la balle(le x). 
+        let ballBottomRightY = this.__ball.topLeft.y + ballHeight;      // Coin en bas a droite de la balle(le y).
 
         let leftPaddle = this.__paddle.left; // A gauche du paddle.
-        let RightPaddle = leftPaddle + paddleWidth; // A droite du paddle.
+        let rightPaddle = leftPaddle + paddleWidth; // A droite du paddle.
 
-        if (ballBottomRightY >= paddleTopPos && (ballBottomRightX >= leftPaddle && ballBottomLeftX <= RightPaddle)) {
+        if (ballBottomRightY > paddleTopPos + 2 && ((ballBottomRightX >= leftPaddle) && (ballBottomLeftX <= rightPaddle))) {
+            this.placeBallOnSide(ballBottomRightX, leftPaddle, rightPaddle);
+            this.__ball.movement.reverseX();
+        } else if (ballBottomRightY == paddleTopPos && (ballBottomRightX == leftPaddle || ballBottomLeftX == rightPaddle)) {
+            this.__ball.movement.reverseX();
+            this.__ball.movement.reverseY();
+        } else if (ballBottomRightY >= paddleTopPos && (ballBottomRightX >= leftPaddle && ballBottomLeftX <= rightPaddle)) {
+            this.placeBallPaddleTop();
             this.__ball.movement.reverseY();
         }
     }
+
+    /**
+     * Put the ball on the top of the paddle.
+     * 
+     */
+    placeBallPaddleTop() {
+        this.__ball.topLeft.y = paddleTopPos - ballHeight;
+    }
+
+    /**
+     * if the ball touches the left side of the paddle, the ball is placed on the left side of the paddle else on the right side.
+     * 
+     * @param {*} ballBottomRightX The bottom right of the ball.
+     * @param {*} leftPaddle The left side of the paddle.
+     * @param {*} rightPaddle The right side of the paddle.
+     */
+    placeBallOnSide(ballBottomRightX, leftPaddle, rightPaddle) {
+        if (ballBottomRightX >= leftPaddle && ballBottomRightX < (leftPaddle + (paddleWidth / 2))) {
+            this.__ball.topLeft.x = leftPaddle - ballWidth;
+        } else {
+            this.__ball.topLeft.x = rightPaddle;
+        }
+    }
+
 }
