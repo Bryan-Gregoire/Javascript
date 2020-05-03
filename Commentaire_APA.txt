@@ -6,3 +6,10 @@ Des méthodes ou attributs pour calculer le coté droit ou le centre de la raque
 Tu as travaillé avec un autre élève pour ce projet ?
 
 3,5/4
+
+Itération 2
+------------
+
+La méthode ballMove gagnerait à être décomposé en sous algo (pour les conditions par exemple). Difficilement compréhensible en première lecture
+
+5,5/6
