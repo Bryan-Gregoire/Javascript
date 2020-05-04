@@ -26,4 +26,9 @@ class Sprite {
      * 
      */
     get dimension() { return this._dimension; }
+
+    /**
+     * Set a new position.
+     */
+    set topLeft(newTopLeft) { this._topLeft = newTopLeft ; }
 }

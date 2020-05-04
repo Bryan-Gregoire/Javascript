@@ -8,8 +8,8 @@ class Game {
      * 
      */
     constructor() {
-        this.__paddle = new Paddle(sceneWidth / 2 - paddleWidth / 2);
-        this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -1));
+        this.__paddle = new Paddle(sceneWidth / 2 - paddleWidth / 2, new Dimension(paddleWidth, paddleWidth));
+        this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -1), new Dimension(ballWidth,ballHeight));
     }
 
     /**
@@ -59,11 +59,11 @@ class Game {
     ballMove() {
         this.__ball.move();
 
-        let ballBottomLeftX = this.__ball.topLeft.x;                    // A gauche de la balle( le x).
-        let ballBottomRightX = this.__ball.topLeft.x + ballWidth;       // A droite de la balle(le x). 
-        let ballBottomY = this.__ball.topLeft.y + ballHeight;           // Le bas de la balle(le y).
-        let leftPaddle = this.__paddle.left;                            // A gauche du paddle.
-        let rightPaddle = leftPaddle + paddleWidth;                     // A droite du paddle.
+        let ballBottomLeftX = this.__ball.topLeft.x;                                      // A gauche de la balle( le x).
+        let ballBottomRightX = this.__ball.topLeft.x + this.__ball.dimension.width;       // A droite de la balle(le x). 
+        let ballBottomY = this.__ball.topLeft.y + this.__ball.dimension.height;           // Le bas de la balle(le y).
+        let leftPaddle = this.__paddle.left;                                              // A gauche du paddle.
+        let rightPaddle = leftPaddle + this.__paddle.dimension.width;                     // A droite du paddle.
 
         if (ballBottomY > paddleTopPos + 2 && ((ballBottomRightX > leftPaddle) && (ballBottomLeftX < rightPaddle))) {
             this.placeBallOnSide(ballBottomRightX, leftPaddle, rightPaddle);
@@ -95,7 +95,7 @@ class Game {
      */
     placeBallOnSide(ballBottomRightX, leftPaddle, rightPaddle) {
         if (ballBottomRightX >= leftPaddle && ballBottomRightX < (leftPaddle + (paddleWidth / 2))) {
-            this.__ball.topLeft.x = leftPaddle - ballWidth;
+            this.__ball.topLeft.x = leftPaddle - this.__ball.dimension.width;
         } else {
             this.__ball.topLeft.x = rightPaddle;
         }

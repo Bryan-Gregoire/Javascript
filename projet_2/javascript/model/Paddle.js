@@ -13,14 +13,7 @@ class Paddle extends Sprite {
     constructor(position, dimension) {
         super(position, dimension);
         this.__left = super.position;
-    }
-
-    /**
-     * Get the position.
-     * 
-     */
-    get left() {
-        return this.__left;
+        this.__dimension = dimension;
     }
 
     /**
@@ -29,7 +22,7 @@ class Paddle extends Sprite {
      * @param {*} centerX the given position to change.
      */
     moveTo(centerX) {
-        this.__left = this.moveInScene(centerX);
+        super.left = this.moveInScene(centerX);
     }
 
     /**
@@ -40,8 +33,8 @@ class Paddle extends Sprite {
     moveInScene(left) {
         if (left < 0) {
             return 0;
-        } else if (left > sceneWidth - paddleWidth) {
-            return sceneWidth - paddleWidth;
+        } else if (left > sceneWidth - this.__dimension.width) {
+            return sceneWidth - this.__dimension.width;
         } else {
             return left
         }

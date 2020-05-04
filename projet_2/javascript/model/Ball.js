@@ -12,16 +12,8 @@ class Ball extends Sprite {
      */
     constructor(topLeft, movement, dimension) {
         super(topLeft, dimension);
-        this.__topLeft = super.topLeft;
-        this.__movement = movement;
-    }
-
-    /**
-     * Get the position of the ball.
-     * 
-     */
-    get topLeft() {
-        return this.__topLeft;
+        this._movement = movement;
+        this._dimension = dimension;
     }
 
     /**
@@ -29,7 +21,15 @@ class Ball extends Sprite {
      * 
      */
     get movement() {
-        return this.__movement;
+        return this._movement;
+    }
+
+    /**
+     * Get the dimension of the ball.
+     * 
+     */
+    get dimension() {
+        return this._dimension;
     }
 
     /**
@@ -37,10 +37,10 @@ class Ball extends Sprite {
      * 
      */
     move() {
-        let x = this.__topLeft.x + this.__movement.deltaX;
-        let y = this.__topLeft.y + this.__movement.deltaY;
-        this.__topLeft = new Position(x, y);
-        this.ballInScene(this.__topLeft, this.__movement);
+        let x = super.topLeft.x + this._movement.deltaX;
+        let y = super.topLeft.y + this._movement.deltaY;
+        super.topLeft = new Position(x, y);
+        this.ballInScene(super.topLeft, this._movement);
     }
 
     /**
@@ -56,10 +56,10 @@ class Ball extends Sprite {
         if (position.y < 0) {
             moves.reverseY();
         }
-        if (position.x > sceneWidth - ballWidth) {
+        if (position.x > sceneWidth - this._dimension.width) {
             moves.reverseX();
         }
-        if (position.y > sceneHeight - ballHeight) {
+        if (position.y > sceneHeight - this._dimension.height) {
             moves.reverseY();
         }
     }
