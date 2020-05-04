@@ -2,19 +2,21 @@
  * The paddle of the game.
  * 
  */
-class Paddle {
+class Paddle extends Sprite {
 
     /**
-     * The constructor of paddle.
+     * Constructor of Paddle.
      * 
-     * @param {*} left 
+     * @param {*} position the given position.
+     * @param {*} dimension the given dimension.
      */
-    constructor(left) {
-        this.__left = this.moveInScene(left);
+    constructor(position, dimension) {
+        super(position, dimension);
+        this.__left = super.position;
     }
 
     /**
-     * Get the left.
+     * Get the position.
      * 
      */
     get left() {
@@ -22,12 +24,12 @@ class Paddle {
     }
 
     /**
-     * Change the left.
+     * Change the position.
      * 
-     * @param {*} left the left to change.
+     * @param {*} centerX the given position to change.
      */
-    moveTo(left) {
-        this.__left = this.moveInScene(left);
+    moveTo(centerX) {
+        this.__left = this.moveInScene(centerX);
     }
 
     /**

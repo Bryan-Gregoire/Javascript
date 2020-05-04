@@ -1,21 +1,23 @@
 /**
  * The ball of the game.
  */
-class Ball {
+class Ball extends Sprite {
 
     /**
-     * Constructor of the ball.
+     * Constructor of Ball.
      * 
-     * @param {*} position The position of the ball in the game.
-     * @param {*} movement the movement of the ball in the game.
+     * @param {*} topLeft the position of the ball.
+     * @param {*} movement the movement of the ball.
+     * @param {*} dimension the size of the ball.
      */
-    constructor(position, movement) {
-        this.__topLeft = position;
+    constructor(topLeft, movement, dimension) {
+        super(topLeft, dimension);
+        this.__topLeft = super.topLeft;
         this.__movement = movement;
     }
 
     /**
-     * Get the position.
+     * Get the position of the ball.
      * 
      */
     get topLeft() {
@@ -23,7 +25,7 @@ class Ball {
     }
 
     /**
-     * Get the movement.
+     * Get the movement of the ball.
      * 
      */
     get movement() {
