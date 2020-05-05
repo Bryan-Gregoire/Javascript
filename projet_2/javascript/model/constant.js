@@ -5,3 +5,8 @@ const sceneHeight = 600;
 const ballWidth = 24;
 const ballHeight = 24;
 const paddleTopPos = sceneHeight-paddleHeight;
+
+const BRICKX = 15;
+const BRICKY = 3;
+const BRICKWIDTH = 64;
+const BRICKHEIGHT = 24;

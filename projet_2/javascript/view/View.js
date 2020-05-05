@@ -25,4 +25,13 @@ class View {
         $("#" + item).css('top', sprite.topLeft.y);
         $('#' + item).css('left', sprite.left);
     }
+
+    //addAll(sprite) {
+       // for (let index = 0; index < BRICKY; index++) {
+        //    for (let index = 0; index < sprite.length; index++) {
+             //   element = sprite[index];
+          //      $('#scene').push('element');
+         //   }
+      //  }
+    //}
 }
