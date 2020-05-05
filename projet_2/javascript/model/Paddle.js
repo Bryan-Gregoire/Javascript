@@ -10,10 +10,10 @@ class Paddle extends Sprite {
      * @param {*} position the given position.
      * @param {*} dimension the given dimension.
      */
-    constructor(position, dimension) {
-        super(position, dimension);
+    constructor(position, dimension, id,type) {
+        super(position, dimension, id,type);
         this.__left = super.position;
-        this.__dimension = dimension;
+        this.__dimension = super.dimension;
     }
 
     /**

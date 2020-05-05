@@ -8,8 +8,8 @@ class Game {
      * 
      */
     constructor() {
-        this.__paddle = new Paddle(sceneWidth / 2 - paddleWidth / 2, new Dimension(paddleWidth, paddleWidth));
-        this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -1), new Dimension(ballWidth,ballHeight));
+        this.__paddle = new Paddle(sceneWidth / 2 - paddleWidth / 2, new Dimension(paddleWidth, paddleHeight), "raquette", "Paddle");
+        this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -1), new Dimension(ballWidth,ballHeight), "balle", "Ball");
     }
 
     /**

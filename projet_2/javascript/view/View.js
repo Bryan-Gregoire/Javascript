@@ -4,15 +4,6 @@
 class View {
 
     /**
-     * Display the paddle.
-     * 
-     * @param {*} paddle the paddle.
-     */
-    displayPaddle(paddle) {
-        $('#raquette').css('left', paddle.left);
-    }
-
-    /**
      * return the distance of any element of id unId compared 
      * at the left edge of the window.
      * 
@@ -21,13 +12,17 @@ class View {
         return $("#scene").offset().left;
     }
 
-    /**
-     * Display the ball.
-     * 
-     * @param {*} ball the ball.
-     */
-    displayBall(ball) {
-        $("#balle").css('left', ball.topLeft.x);
-        $("#balle").css('top', ball.topLeft.y);
+    add(sprite) {
+        let item = $('<span>');
+        $(item).attr("id", sprite.id);
+        $(item).attr("class", sprite.type);
+        $('#scene').append(item);
+    }
+
+    update(sprite) {
+        let item = sprite.id;
+        $("#" + item).css('left', sprite.topLeft.x);
+        $("#" + item).css('top', sprite.topLeft.y);
+        $('#' + item).css('left', sprite.left);
     }
 }

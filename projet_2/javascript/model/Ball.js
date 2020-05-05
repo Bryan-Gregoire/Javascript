@@ -10,8 +10,8 @@ class Ball extends Sprite {
      * @param {*} movement the movement of the ball.
      * @param {*} dimension the size of the ball.
      */
-    constructor(topLeft, movement, dimension) {
-        super(topLeft, dimension);
+    constructor(topLeft, movement, dimension, id,type) {
+        super(topLeft, dimension, id,type);
         this._movement = movement;
         this._dimension = dimension;
     }

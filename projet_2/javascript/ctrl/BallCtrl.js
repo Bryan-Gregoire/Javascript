@@ -11,7 +11,7 @@ class BallCtrl {
     constructor(game, view) {
         this._game = game;
         this._view = view;
-        view.displayBall(this._game.ball);
+        this._view.update(this._game.ball);
     }
 
     /**
@@ -27,7 +27,7 @@ class BallCtrl {
      */
     move() {
         this._game.ballMove();
-        this._view.displayBall(this._game.ball);
+        this._view.update(this._game.ball);
     }
 
     /**

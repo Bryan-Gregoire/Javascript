@@ -21,6 +21,8 @@ class GameCtrl {
      * 
      */
     play() {
+        this.__view.add(this.__game.ball);
+        this.__view.add(this.__game.paddle);
         this.__ballCtrl.start();
     }
 

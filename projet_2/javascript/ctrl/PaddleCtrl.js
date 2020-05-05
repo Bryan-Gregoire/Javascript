@@ -11,8 +11,8 @@ class PaddleCtrl {
     */
     constructor(game, view) {
         this.__game = game;
-        view.displayPaddle(this.__game.paddle);
-        $(document).mousemove((evt) => this.moveMouse(this.__game.paddle, view, evt));
+        view.update(this.__game.paddle);
+        $(document).mousemove((evt) => this.moveMouse(this.__game.paddle.left, view, evt));
     }
 
     /**
@@ -25,6 +25,6 @@ class PaddleCtrl {
     moveMouse(game, view, evt) {
         let pos = evt.clientX - view.sceneLeft();
         this.__game.paddleMove(pos - paddleWidth / 2);
-        view.displayPaddle(this.__game.paddle);
+        view.update(this.__game.paddle);
     }
 }
