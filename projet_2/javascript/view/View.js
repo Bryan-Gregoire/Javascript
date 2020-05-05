@@ -26,12 +26,38 @@ class View {
         $('#' + item).css('left', sprite.left);
     }
 
-    //addAll(sprite) {
-       // for (let index = 0; index < BRICKY; index++) {
-        //    for (let index = 0; index < sprite.length; index++) {
-             //   element = sprite[index];
-          //      $('#scene').push('element');
-         //   }
-      //  }
-    //}
+    buildWall(sprite) {
+        sprite = [];
+        for (let left = 0; left < BRICKY; left++) {
+            if (left > 0) {
+                left = BRICKWIDTH + left - 1;
+            } else {
+                left = left;
+            }
+            for (let top = 0; top < BRICKX; top++) {
+                if (top > 0) {
+                    top = BRICKHEIGHT + top - 1;
+                } else {
+                    top = top;
+                }
+                sprite.push(new Brick(left, top));
+            }
+        }
+        console.log("AVANT : " + sprite); 
+        return sprite;
+    }
+
+    addAll(sprite) {
+        sprite = this.buildWall(sprite);
+        for (let i = 0; i < BRICKY; i++) {
+            for (let index = 0; index < BRICKX; index++) {
+                let item = $('<span>');
+                $(item).attr("id", i + "," + index);
+                $(item).attr("class");
+                $(item).css("left", sprite[index].left);
+                $(item).css("top", sprite[index].top);
+                $('#scene').append(item);
+            }
+        }
+    }
 }

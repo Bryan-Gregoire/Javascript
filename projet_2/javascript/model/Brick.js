@@ -1,6 +1,6 @@
 class Brick extends Sprite{
 
-    constructor(){
+    constructor(topLeft, dimension, id, type){
         super(topLeft, dimension, id, type);
     }
 }

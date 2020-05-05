@@ -48,8 +48,7 @@ header{
 .brick {
     width: 64px;
     height: 24px;
-    border: solid;
-    border-color: #FF5733;
+    background-color: #FF5733;
     margin: 0px auto;
     position: absolute;
 }
