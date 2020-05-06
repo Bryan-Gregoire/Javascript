@@ -49,6 +49,8 @@ header{
     width: 64px;
     height: 24px;
     background-color: #FF5733;
-    margin: 0px auto;
     position: absolute;
+    border: groove;
+    border-color: #FD481F;
+    box-sizing: border-box;
 }

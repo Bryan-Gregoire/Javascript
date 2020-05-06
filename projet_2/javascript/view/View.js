@@ -12,6 +12,11 @@ class View {
         return $("#scene").offset().left;
     }
 
+    /**
+     * Display a sprite in the game.
+     * 
+     * @param {*} sprite the given sprite to display.
+     */
     add(sprite) {
         let item = $('<span>');
         $(item).attr("id", sprite.id);
@@ -19,6 +24,11 @@ class View {
         $('#scene').append(item);
     }
 
+    /**
+     * Change the visual position of a sprite.
+     * 
+     * @param {*} sprite the given sprite.
+     */
     update(sprite) {
         let item = sprite.id;
         $("#" + item).css('left', sprite.topLeft.x);
@@ -26,37 +36,28 @@ class View {
         $('#' + item).css('left', sprite.left);
     }
 
-    buildWall(sprite) {
-        sprite = [];
-        for (let left = 0; left < BRICKY; left++) {
-            if (left > 0) {
-                left = BRICKWIDTH + left - 1;
-            } else {
-                left = left;
-            }
-            for (let top = 0; top < BRICKX; top++) {
-                if (top > 0) {
-                    top = BRICKHEIGHT + top - 1;
-                } else {
-                    top = top;
-                }
-                sprite.push(new Brick(left, top));
-            }
-        }
-        console.log("AVANT : " + sprite); 
-        return sprite;
-    }
-
+    /**
+     * Display the wall in the game.
+     * 
+     * @param {*} sprite the given sprite.
+     */
     addAll(sprite) {
-        sprite = this.buildWall(sprite);
-        for (let i = 0; i < BRICKY; i++) {
-            for (let index = 0; index < BRICKX; index++) {
-                let item = $('<span>');
-                $(item).attr("id", i + "," + index);
-                $(item).attr("class");
-                $(item).css("left", sprite[index].left);
-                $(item).css("top", sprite[index].top);
-                $('#scene').append(item);
+        let wall = sprite.topLeft;
+        let i = 0;
+        let j = 0;
+        for (let index = 0; index < wall.length; index++) {
+            let item = $('<span>');
+            let element = wall[index];
+            $(item).attr("id", i + "," + j);
+            $(item).attr("class", "brick");
+            $(item).css("left", element.__x);
+            $(item).css("top", element.__y);
+            $('#scene').append(item);
+            if (j == BRICKX - 1) {
+                i++;
+                j = 0;
+            } else {
+                j++;
             }
         }
     }

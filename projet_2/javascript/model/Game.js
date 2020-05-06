@@ -11,7 +11,7 @@ class Game {
         this.__paddle = new Paddle(sceneWidth / 2 - paddleWidth / 2, new Dimension(paddleWidth, paddleHeight), "raquette", "paddle");
         this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -1), 
         new Dimension(ballWidth,ballHeight), "balle", "ball");
-        this.__wall = new Brick([BRICKX*BRICKY], new Dimension(BRICKWIDTH, BRICKHEIGHT), "brick", "brick");
+        this.__wall = new Brick(this.buildWall(), new Dimension(BRICKWIDTH, BRICKHEIGHT), "", "brick");
     }
 
     /**
@@ -47,6 +47,29 @@ class Game {
      */
     randomDeltaX() {
         return (Math.random() * 6) - 3;
+    }
+
+    /**
+     * Create the wall of the game. Each brick has different positions.
+     * 
+     */
+    buildWall() {
+        let wall = [];
+        let left = 0;
+        let top = 72;
+        for (let y = 0; y < BRICKY; y++) {
+            if (y > 0) {
+                top = top + BRICKHEIGHT;
+            }
+            for (let x = 0; x < BRICKX; x++) {
+                if (x > 0) {
+                    left = left + BRICKWIDTH;
+                }
+                wall.push(new Position(left, top));
+            }
+            left = 0;
+        }
+        return wall;
     }
 
     /**
