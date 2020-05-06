@@ -9,8 +9,8 @@ class Game {
      */
     constructor() {
         this.__paddle = new Paddle(sceneWidth / 2 - paddleWidth / 2, new Dimension(paddleWidth, paddleHeight), "raquette", "paddle");
-        this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -1), 
-        new Dimension(ballWidth,ballHeight), "balle", "ball");
+        this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -1),
+            new Dimension(ballWidth, ballHeight), "balle", "ball");
         this.__wall = new Brick(this.buildWall(), new Dimension(BRICKWIDTH, BRICKHEIGHT), "", "brick");
     }
 
@@ -88,23 +88,19 @@ class Game {
     ballMove() {
         this.__ball.move();
 
-        let ballBottomLeftX = this.__ball.topLeft.x;                                      // A gauche de la balle( le x).
-        let ballBottomRightX = this.__ball.topLeft.x + this.__ball.dimension.width;       // A droite de la balle(le x). 
-        let ballBottomY = this.__ball.topLeft.y + this.__ball.dimension.height;           // Le bas de la balle(le y).
+        let ballBottomRightX = this.__ball.right;                                         // A droite de la balle(le x). 
         let leftPaddle = this.__paddle.left;                                              // A gauche du paddle.
         let rightPaddle = leftPaddle + this.__paddle.dimension.width;                     // A droite du paddle.
 
-        if (ballBottomY > paddleTopPos + 2 && ((ballBottomRightX > leftPaddle) && (ballBottomLeftX < rightPaddle))) {
+        if (this.__ball.bounce(this.__ball, this.__paddle) == "sides") {
             this.placeBallOnSide(ballBottomRightX, leftPaddle, rightPaddle);
             this.__ball.movement.reverseX();
-        } else if (ballBottomY == paddleTopPos && (ballBottomRightX == leftPaddle || ballBottomLeftX == rightPaddle)) {
-            this.__ball.movement.reverseX();
-            this.__ball.movement.reverseY();
-        } else if (ballBottomY >= paddleTopPos && (ballBottomRightX >= leftPaddle && ballBottomLeftX <= rightPaddle)) {
+        } else if (this.__ball.bounce(this.__ball, this.__paddle) == "top") {
             this.placeBallPaddleTop();
             this.__ball.movement.reverseY();
         }
     }
+
 
     /**
      * Put the ball on the top of the paddle.

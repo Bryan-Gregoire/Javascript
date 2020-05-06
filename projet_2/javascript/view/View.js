@@ -50,8 +50,8 @@ class View {
             let element = wall[index];
             $(item).attr("id", i + "," + j);
             $(item).attr("class", "brick");
-            $(item).css("left", element.__x);
-            $(item).css("top", element.__y);
+            $(item).css("left", element.x);
+            $(item).css("top", element.y);
             $('#scene').append(item);
             if (j == BRICKX - 1) {
                 i++;
