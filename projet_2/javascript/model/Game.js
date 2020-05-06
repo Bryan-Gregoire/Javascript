@@ -29,6 +29,10 @@ class Game {
         return this.__ball;
     }
 
+    /**
+     * Get the wall of the game.
+     * 
+     */
     get wall() {
         return this.__wall;
     }
@@ -82,7 +86,7 @@ class Game {
     }
 
     /**
-     * Move of the ball in the game.
+     * Move of the ball in the game, bounce if hit elements of the game.
      * 
      */
     ballMove() {
@@ -92,10 +96,10 @@ class Game {
         let leftPaddle = this.__paddle.left;                                              // A gauche du paddle.
         let rightPaddle = leftPaddle + this.__paddle.dimension.width;                     // A droite du paddle.
 
-        if (this.__ball.bounce(this.__ball, this.__paddle) == "sides") {
+        if (this.__ball.bounceOnPaddle(this.__ball, this.__paddle) == "sides") {
             this.placeBallOnSide(ballBottomRightX, leftPaddle, rightPaddle);
             this.__ball.movement.reverseX();
-        } else if (this.__ball.bounce(this.__ball, this.__paddle) == "top") {
+        } else if (this.__ball.bounceOnPaddle(this.__ball, this.__paddle) == "top") {
             this.placeBallPaddleTop();
             this.__ball.movement.reverseY();
         }

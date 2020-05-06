@@ -41,18 +41,34 @@ class Sprite {
      */
     get type() { return this._type; }
 
+    /**
+     * Get the right side of the sprite.
+     * 
+     */
     get right() {
         return this._topLeft.x + this._dimension.width;
     }
 
+    /**
+     * Get the bottom of the sprite.
+     * 
+     */
     get bottom() {
         return this._topLeft.y + this._dimension.height;
     }
 
+    /**
+     * Get the left of the sprite.
+     * 
+     */
     get x() {
         return this._topLeft.x;
     }
 
+    /**
+     * Get the top of the sprite.
+     * 
+     */
     get y() {
         return this._topLeft.y;
     }
@@ -62,7 +78,13 @@ class Sprite {
      */
     set topLeft(newTopLeft) { this._topLeft = newTopLeft; }
 
-    bounce(sprite1, sprite2) {
+    /**
+     * Check if a sprite hit an other sprite.
+     * 
+     * @param {*} sprite1 the given sprite.
+     * @param {*} sprite2 the second given sprite.
+     */
+    bounceOnPaddle(sprite1, sprite2) {
 
         let leftSprite1 = sprite1.x;
         let rightSprite1 = sprite1.x + sprite1._dimension.width;
@@ -74,6 +96,6 @@ class Sprite {
             return "sides";
         } else if (bottomSprite1 >= paddleTopPos && (rightSprite1 >= leftSprite2 && leftSprite1 <= rightSprite2)) {
             return "top";
-        } 
+        }
     }
 }
