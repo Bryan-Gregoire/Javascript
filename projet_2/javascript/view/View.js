@@ -42,23 +42,25 @@ class View {
      * @param {*} sprite the given sprite.
      */
     addAll(sprite) {
-        let wall = sprite.topLeft;
-        let i = 0;
-        let j = 0;
-        for (let index = 0; index < wall.length; index++) {
+        for (let index = 0; index < sprite.length; index++) {
             let item = $('<span>');
-            let element = wall[index];
-            $(item).attr("id", i + "," + j);
-            $(item).attr("class", "brick");
+            let element = sprite[index];
+            $(item).attr("id", element.id);
+            $(item).attr("class", element.type);
             $(item).css("left", element.x);
             $(item).css("top", element.y);
             $('#scene').append(item);
-            if (j == BRICKX - 1) {
-                i++;
-                j = 0;
-            } else {
-                j++;
-            }
+        }
+    }
+
+    /**
+     * The brick to remove.
+     * 
+     * @param {*} sprite the given sprite.
+     */
+    removeBricks(sprite) {
+        for (let i = 0; i < sprite.length; i++) {
+            $('#' + sprite[i].id).remove();
         }
     }
 }

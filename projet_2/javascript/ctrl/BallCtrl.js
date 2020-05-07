@@ -26,8 +26,8 @@ class BallCtrl {
      * Move the ball one step (defined by its movement) and refresh the view.
      */
     move() {
-        this._game.ballMove();
         this._view.update(this._game.ball);
+        this._view.removeBricks(this._game.ballMove());
     }
 
     /**
