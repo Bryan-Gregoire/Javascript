@@ -143,44 +143,88 @@ class Game {
     }
 
     /**
-     * Check if the ball touch a brick.
+     * Check if the ball touch bricks.
      * 
      */
     bounceOnWall() {
         let destroyBrick = [];
         let i = 0;
-        let bounce = false;
-        while (!bounce && i < this.__wall.length) {
+        let bottomBall = this.ball.topLeft.y + ballHeight;
+        let topBall = this.ball.topLeft.y;
+        let rightBall = this.ball.topLeft.x + ballWidth;
+        let leftBall = this.ball.topLeft.x;
+        
+        while (i < this.__wall.length) {
             let leftBrick = this.__wall[i].topLeft.x;
             let rightBrick = this.__wall[i].topLeft.x + BRICKWIDTH;
             let topBrick = this.__wall[i].topLeft.y;
             let bottomBrick = this.__wall[i].topLeft.y + BRICKHEIGHT;
-            let bottomBall = this.ball.topLeft.y + ballHeight;
-            let topBall = this.ball.topLeft.y;
-            let rightBall = this.ball.topLeft.x + ballWidth;
-            let leftBall = this.ball.topLeft.x;
 
-            if ((bottomBall > topBrick + 2 && topBall < bottomBrick - 2) && rightBall > leftBrick && leftBall < rightBrick) {          // Si ca touche les cotés.
-                this.placeBallOnSide(this.__wall[i], rightBall, leftBrick, rightBrick);
-                this.__ball.movement.reverseX();
-                destroyBrick.push(this.__wall[i]);
-                this.__wall.splice(i, 1);
-                bounce = true;
-            } else if ((bottomBall >= topBrick && bottomBall < topBrick + 1) && (rightBall >= leftBrick && leftBall <= rightBrick)) {  // Si ca touche le haut de la brique.
-                this.placeBallSpriteTop(topBrick);
-                this.__ball.movement.reverseY();
-                destroyBrick.push(this.__wall[i]);
-                this.__wall.splice(i, 1);
-                bounce = true;
-            } else if ((topBall <= bottomBrick && topBall > bottomBrick - 1) && (rightBall >= leftBall && leftBall <= rightBrick)) {   // Si ca touche le bas de la brique.
-                this.placeBallSpriteBottom(bottomBrick);
-                this.__ball.movement.reverseY();
-                destroyBrick.push(this.__wall[i]);
-                this.__wall.splice(i, 1);
-                bounce = true;
+            if (this.bounceSideBrick(bottomBall, topBall, topBrick, bottomBrick, rightBall, leftBall, leftBrick, rightBrick)) {     // Si ca touche un des cotés d'une brique.
+                this.placeBallOnSide(this.__wall[i], rightBall, leftBrick, rightBrick);                                             // Je replace la balle sur le coté toucher.
+                this.__ball.movement.reverseX();                                                                                    // J'inverse le mouvement x de la balle.
+                destroyBrick.push(this.__wall[i]);                                                                                  // J'ajoute la brique a détruire dans un tableau.
+                this.__wall.splice(i, 1);                                                                                           // Je supprime la brique du mur.
+            }
+            else if (this.bounceTopBrick(bottomBall, topBrick, rightBall, leftBall, leftBrick, rightBrick)) {                       // Si ca touche le haut d'une brique.
+                this.placeBallSpriteTop(topBrick);                                                                                  // je replace la balle sur le haut de la brique.
+                this.__ball.movement.reverseY();                                                                                    // J'inverse le mouvemet y de la balle.
+                destroyBrick.push(this.__wall[i]);                                                                                  // J'ajoute la brique a détruire dans un tableau.
+                this.__wall.splice(i, 1);                                                                                           // Je supprime la brique du mur.
+            }
+            else if (this.bounceBottomBrick(topBall, bottomBrick, rightBall, leftBall, rightBrick, leftBrick)) {                    // Si ca touche le bas d'une brique.
+                this.placeBallSpriteBottom(bottomBrick);                                                                            // je replace la balle en bas de la brick toucher.
+                this.__ball.movement.reverseY();                                                                                    // j'inverse le mouvement y de la balle.
+                destroyBrick.push(this.__wall[i]);                                                                                  // J'ajoute la brique a détruire dans un tableau.
+                this.__wall.splice(i, 1);                                                                                           // Je supprime la brique du mur.
             }
             i++;
         }
         return destroyBrick;
     }
+
+    /**
+     * Check if the ball touch the sides of a brick.
+     * 
+     * @param {*} bottomBall the bottom of the ball.
+     * @param {*} topBall the top of the ball.
+     * @param {*} topBrick the top of the brick.
+     * @param {*} bottomBrick the bottom of the brick.
+     * @param {*} rightBall the right of the ball.
+     * @param {*} leftBall the left of the ball.
+     * @param {*} leftBrick the left of the brick.
+     * @param {*} rightBrick the right of the brick.
+     */
+    bounceSideBrick(bottomBall, topBall, topBrick, bottomBrick, rightBall, leftBall, leftBrick, rightBrick) {
+        return bottomBall > topBrick + 1 && topBall < bottomBrick - 1 && rightBall > leftBrick && leftBall < rightBrick;
+    }
+
+    /**
+     * Check if the ball touch the the top a brick.
+     * 
+     * @param {*} bottomBall the bottom of the ball.
+     * @param {*} topBrick the top of the brick.
+     * @param {*} rightBall the right of the ball.
+     * @param {*} leftBall the left of the ball.
+     * @param {*} leftBrick the left of the brick.
+     * @param {*} rightBrick the right of the brick.
+     */
+    bounceTopBrick(bottomBall, topBrick, rightBall, leftBall, leftBrick, rightBrick) {
+        return bottomBall >= topBrick && bottomBall < topBrick + 1 && rightBall > leftBrick && leftBall < rightBrick;
+    }
+
+    /**
+     * Check if the ball touch the bottom of a brick.
+     * 
+     * @param {*} topBall the top of the ball.
+     * @param {*} bottomBrick the bottom of the brick.
+     * @param {*} rightBall the right of the ball.
+     * @param {*} leftBall the left of the ball.
+     * @param {*} rightBrick the right of the brick.
+     * @param {*} leftBrick the left of the brick.
+     */
+    bounceBottomBrick(topBall, bottomBrick, rightBall, leftBall, rightBrick, leftBrick) {
+        return topBall <= bottomBrick && topBall > bottomBrick - 1 && rightBall > leftBrick && leftBall < rightBrick;
+    }
+
 }

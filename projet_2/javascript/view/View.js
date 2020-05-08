@@ -42,19 +42,19 @@ class View {
      * @param {*} sprite the given sprite.
      */
     addAll(sprite) {
-        for (let index = 0; index < sprite.length; index++) {
+        for (let i = 0; i < sprite.length; i++) {
             let item = $('<span>');
-            let element = sprite[index];
+            let element = sprite[i];
             $(item).attr("id", element.id);
             $(item).attr("class", element.type);
-            $(item).css("left", element.x);
-            $(item).css("top", element.y);
+            $(item).css("left", element.topLeft.x);
+            $(item).css("top", element.topLeft.y);
             $('#scene').append(item);
         }
     }
 
     /**
-     * The brick to remove.
+     * Check the id to remove of the game of the given sprite.
      * 
      * @param {*} sprite the given sprite.
      */
