@@ -12,30 +12,31 @@ class Game {
         this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -1),
             new Dimension(ballWidth, ballHeight), "balle", "ball");
         this.__wall = this.buildWall();
+        this.__player = new Player(0);
     }
 
     /**
      * Get the paddle of the game.
      * 
      */
-    get paddle() {
-        return this.__paddle;
-    }
+    get paddle() { return this.__paddle; }
 
     /**
      * Get the ball of the game.
      */
-    get ball() {
-        return this.__ball;
-    }
+    get ball() { return this.__ball; }
 
     /**
      * Get the wall of the game.
      * 
      */
-    get wall() {
-        return this.__wall;
-    }
+    get wall() { return this.__wall; }
+
+    /**
+     * Get the player of the game.
+     * 
+     */
+    get player() { return this.__player; }
 
     /**
      * Random number for x-axis.
@@ -152,7 +153,7 @@ class Game {
         let topBall = this.ball.topLeft.y;
         let rightBall = this.ball.topLeft.x + ballWidth;
         let leftBall = this.ball.topLeft.x;
-        
+
         while (i < this.__wall.length) {
             let leftBrick = this.__wall[i].topLeft.x;
             let rightBrick = this.__wall[i].topLeft.x + BRICKWIDTH;
@@ -164,18 +165,21 @@ class Game {
                 this.__ball.movement.reverseX();                                                                                    // J'inverse le mouvement x de la balle.
                 destroyBrick.push(this.__wall[i]);                                                                                  // J'ajoute la brique a détruire dans un tableau.
                 this.__wall.splice(i, 1);                                                                                           // Je supprime la brique du mur.
+                this.__player.addToScore(10);
             }
             else if (this.bounceTopBrick(bottomBall, topBrick, rightBall, leftBall, leftBrick, rightBrick)) {                       // Si ca touche le haut d'une brique.
                 this.placeBallSpriteTop(topBrick);                                                                                  // je replace la balle sur le haut de la brique.
                 this.__ball.movement.reverseY();                                                                                    // J'inverse le mouvemet y de la balle.
                 destroyBrick.push(this.__wall[i]);                                                                                  // J'ajoute la brique a détruire dans un tableau.
                 this.__wall.splice(i, 1);                                                                                           // Je supprime la brique du mur.
+                this.__player.addToScore(10);
             }
             else if (this.bounceBottomBrick(topBall, bottomBrick, rightBall, leftBall, rightBrick, leftBrick)) {                    // Si ca touche le bas d'une brique.
                 this.placeBallSpriteBottom(bottomBrick);                                                                            // je replace la balle en bas de la brick toucher.
                 this.__ball.movement.reverseY();                                                                                    // j'inverse le mouvement y de la balle.
                 destroyBrick.push(this.__wall[i]);                                                                                  // J'ajoute la brique a détruire dans un tableau.
                 this.__wall.splice(i, 1);                                                                                           // Je supprime la brique du mur.
+                this.__player.addToScore(10);
             }
             i++;
         }

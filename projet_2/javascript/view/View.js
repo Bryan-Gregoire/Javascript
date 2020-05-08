@@ -63,4 +63,13 @@ class View {
             $('#' + sprite[i].id).remove();
         }
     }
+
+    /**
+     * Display the score.
+     * 
+     * @param {*} score the given score.
+     */
+    updateScore(score) {
+        $('#score').text(score);
+    }
 }

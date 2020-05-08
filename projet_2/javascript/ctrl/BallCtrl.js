@@ -28,6 +28,7 @@ class BallCtrl {
     move() {
         this._view.update(this._game.ball);
         this._view.removeBricks(this._game.ballMove());
+        this._view.updateScore(this._game.__player.score);
     }
 
     /**
