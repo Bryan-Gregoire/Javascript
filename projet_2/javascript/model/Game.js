@@ -126,8 +126,7 @@ class Game {
     }
 
     /**
-     * The ball touches the sides of the paddle, if the ball touched the left side of the paddle,
-     * the ball is placed on the left side else on the right side.
+     * Replace the ball on the side of the touched sprite.
      * 
      * @param {*} sprite the given sprite.
      * @param {*} ballRightX The bottom right of the ball.
