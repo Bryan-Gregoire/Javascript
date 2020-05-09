@@ -22,6 +22,7 @@ class BallCtrl {
         this._moveListener = setInterval(() => this.move(), 10);
     }
 
+
     /**
      * Move the ball one step (defined by its movement) and refresh the view.
      */
@@ -31,15 +32,13 @@ class BallCtrl {
         this._view.updateScore(this._game.__player.score);
         if (this._game.lost()) {
             this.stop();
-            this._game.player.hurt();                                       // Mettre dans game 
             this._view.showLives(this._game.player.live);
             if (this._game.player.alive()) {
                 this._view.showMessage("You lost");
-            } else return true;
+            }
         }
         if (this._game.win()) {
             this.stop();
-            this._game.player.winOneLive();                                 // Mettre dans game
             this._view.showLives(this._game.player.live);
             this._view.showMessage("You won");
         }

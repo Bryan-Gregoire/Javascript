@@ -235,7 +235,10 @@ class Game {
      * 
      */
     lost() {
-        return (this.__ball.topLeft.y + ballHeight) >= (sceneHeight);
+        if ((this.__ball.topLeft.y + ballHeight) >= (sceneHeight)) {
+            this.__player.hurt();
+            return true;
+        }
     }
 
     /**
@@ -243,7 +246,10 @@ class Game {
      * 
      */
     win() {
-        return this.__wall.length == 0;
+        if (this.__wall.length == 0) {
+            this.__player.winOneLive();
+            return true;
+        }
     }
 
 }
