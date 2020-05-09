@@ -78,7 +78,7 @@ class View {
      * Hide the message of start.
      * 
      */
-    hideMessage(){
+    hideMessage() {
         $('#message').hide();
     }
 
@@ -90,5 +90,27 @@ class View {
     showMessage(text) {
         $('#message').show();
         $('#message').text(text);
+    }
+
+    /**
+     * Show the score.
+     * 
+     * @param {*} score the given score. 
+     */
+    showScore(score) {
+        $('#score').text(score);
+    }
+
+    /**
+     * Show the lives.
+     * 
+     * @param {*} nbLives number of lives to show.
+     */
+    showLives(nbLives) {
+        let lives = ""
+        for (let i = 0; i < nbLives; i++) {
+            lives = lives + "favorite ";
+        }
+        $('.material-icons').text(lives);
     }
 }

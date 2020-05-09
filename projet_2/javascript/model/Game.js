@@ -12,7 +12,7 @@ class Game {
         this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -1),
             new Dimension(ballWidth, ballHeight), "balle", "ball");
         this.__wall = this.buildWall();
-        this.__player = new Player(0);
+        this.__player = new Player(0, 5);
     }
 
     /**

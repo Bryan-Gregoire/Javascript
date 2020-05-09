@@ -24,6 +24,8 @@ class GameCtrl {
         this.__view.add(this.__game.ball);
         this.__view.add(this.__game.paddle);
         this.__view.addAll(this.__game.wall);
+        this.__view.showLives(this.__game.player.live);
+        this.__view.showScore(this.__game.player.score);
         this.ballStartWait();
     }
 

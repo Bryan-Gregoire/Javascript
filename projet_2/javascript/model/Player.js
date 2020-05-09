@@ -9,8 +9,9 @@ class Player {
      * 
      * @param {*} score The score of the game.
      */
-    constructor(score) {
+    constructor(score, live) {
         this._score = score;
+        this._live = live;
     }
 
     /**
@@ -20,11 +21,37 @@ class Player {
     get score() { return this._score; }
 
     /**
+     * Get the lives.
+     * 
+     */
+    get live() { return this._live; }
+
+    /**
      * Add points to the score.
      * 
      * @param {*} point the given points.
      */
-    addToScore(point) {
-         this._score = this._score + point;
+    addToScore(point) { this._score = this._score + point; }
+
+    /**
+     * Lose a life.
+     * 
+     */
+    hurt() { this._live = this._live - 1; }
+
+    /**
+     * Win a life.
+     * 
+     */
+    winOneLive() {
+        if (this._live < 5) {
+            return this._live + 1;
+        }
     }
-}
+
+    /**
+     * Check if there are still lives.
+     * 
+     */
+    alive() { return this._live == 0; }
+} 
