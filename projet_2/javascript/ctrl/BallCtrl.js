@@ -29,6 +29,14 @@ class BallCtrl {
         this._view.update(this._game.ball);
         this._view.removeBricks(this._game.ballMove());
         this._view.updateScore(this._game.__player.score);
+        if(this._game.lost()) {
+            this.stop();
+            this._view.showMessage('You lost');
+        }
+        if(this._game.win()) {
+            this.stop();
+            this._view.showMessage("You won");
+        }
     }
 
     /**

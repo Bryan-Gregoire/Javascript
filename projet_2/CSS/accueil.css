@@ -67,3 +67,12 @@ header{
     width: 90px;
     color: #FD481F;
 }
+
+#message {
+    text-align: center;
+    color: #FD481F;
+    margin-top: 250px;
+    font-size: 50px;
+    font-weight: 300;
+    letter-spacing: 3px;
+}

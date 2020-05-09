@@ -24,7 +24,7 @@ class GameCtrl {
         this.__view.add(this.__game.ball);
         this.__view.add(this.__game.paddle);
         this.__view.addAll(this.__game.wall);
-        this.__ballCtrl.start();
+        this.ballStartWait();
     }
 
     /**
@@ -33,5 +33,24 @@ class GameCtrl {
      */
     stop() {
         this.__ballCtrl.stop();
+    }
+
+    /**
+     * The ball does not move until there is a click.
+     * 
+     */
+    ballStartWait() {
+        this.__view.showMessage("Click to start");
+        $(document).mouseup(() => this.ballStart());
+    }
+
+    /**
+     * Hide the message of the start and start the ball.
+     * 
+     */
+    ballStart() {
+        $(document).off("mouseup");
+        this.__view.hideMessage();
+        this.__ballCtrl.start();
     }
 }

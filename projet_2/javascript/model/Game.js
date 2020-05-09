@@ -8,7 +8,7 @@ class Game {
      * 
      */
     constructor() {
-        this.__paddle = new Paddle(sceneWidth / 2 - paddleWidth / 2, new Dimension(paddleWidth, paddleHeight), "raquette", "paddle");
+        this.__paddle = new Paddle(new Position(432, paddleTopPos), new Dimension(paddleWidth, paddleHeight), "raquette", "paddle");
         this.__ball = new Ball(new Position(this.randomPosX(), sceneHeight / 2 - ballHeight / 2), new Movement(this.randomDeltaX(), -1),
             new Dimension(ballWidth, ballHeight), "balle", "ball");
         this.__wall = this.buildWall();
@@ -165,21 +165,21 @@ class Game {
                 this.__ball.movement.reverseX();                                                                                    // J'inverse le mouvement x de la balle.
                 destroyBrick.push(this.__wall[i]);                                                                                  // J'ajoute la brique a détruire dans un tableau.
                 this.__wall.splice(i, 1);                                                                                           // Je supprime la brique du mur.
-                this.__player.addToScore(10);
+                this.__player.addToScore(10);                                                                                       // Gagne des points.
             }
             else if (this.bounceTopBrick(bottomBall, topBrick, rightBall, leftBall, leftBrick, rightBrick)) {                       // Si ca touche le haut d'une brique.
                 this.placeBallSpriteTop(topBrick);                                                                                  // je replace la balle sur le haut de la brique.
                 this.__ball.movement.reverseY();                                                                                    // J'inverse le mouvemet y de la balle.
                 destroyBrick.push(this.__wall[i]);                                                                                  // J'ajoute la brique a détruire dans un tableau.
                 this.__wall.splice(i, 1);                                                                                           // Je supprime la brique du mur.
-                this.__player.addToScore(10);
+                this.__player.addToScore(10);                                                                                       // // Gagne des points.
             }
             else if (this.bounceBottomBrick(topBall, bottomBrick, rightBall, leftBall, rightBrick, leftBrick)) {                    // Si ca touche le bas d'une brique.
                 this.placeBallSpriteBottom(bottomBrick);                                                                            // je replace la balle en bas de la brick toucher.
                 this.__ball.movement.reverseY();                                                                                    // j'inverse le mouvement y de la balle.
                 destroyBrick.push(this.__wall[i]);                                                                                  // J'ajoute la brique a détruire dans un tableau.
                 this.__wall.splice(i, 1);                                                                                           // Je supprime la brique du mur.
-                this.__player.addToScore(10);
+                this.__player.addToScore(10);                                                                                       // Gagne des points.
             }
             i++;
         }
@@ -228,6 +228,22 @@ class Game {
      */
     bounceBottomBrick(topBall, bottomBrick, rightBall, leftBall, rightBrick, leftBrick) {
         return topBall <= bottomBrick && topBall > bottomBrick - 1 && rightBall > leftBrick && leftBall < rightBrick;
+    }
+
+    /**
+     * Check if the ball touch de bottom of the scene.
+     * 
+     */
+    lost() {
+        return (this.__ball.topLeft.y + ballHeight) >= (sceneHeight);
+    }
+
+    /**
+     * Check if there is no more brick.
+     * 
+     */
+    win() {
+        return this.__wall.length == 0;
     }
 
 }

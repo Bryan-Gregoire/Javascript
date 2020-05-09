@@ -22,6 +22,7 @@ class View {
         $(item).attr("id", sprite.id);
         $(item).attr("class", sprite.type);
         $('#scene').append(item);
+        $('#' + sprite.id).css('left', sprite.topLeft.x);
     }
 
     /**
@@ -71,5 +72,23 @@ class View {
      */
     updateScore(score) {
         $('#score').text(score);
+    }
+
+    /**
+     * Hide the message of start.
+     * 
+     */
+    hideMessage(){
+        $('#message').hide();
+    }
+
+    /**
+     * Show the given message.
+     * 
+     * @param {*} text The given message.
+     */
+    showMessage(text) {
+        $('#message').show();
+        $('#message').text(text);
     }
 }
