@@ -113,4 +113,8 @@ class View {
         }
         $('.material-icons').text(lives);
     }
+
+    showCurrentLevel(nbLevel) {
+        $('#level').text("Level: " + nbLevel);
+    }
 }

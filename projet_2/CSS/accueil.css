@@ -64,6 +64,8 @@ header{
 #score {
     font-family: cursive;
     font-variant: unset;
+    width: 150px;
+    text-align: end;
     color: #FD481F;
 }
 
@@ -77,5 +79,12 @@ header{
 }
 
 .material-icons {
+    width: 144px;
     color: red;
+}
+
+#level {
+    font-family: cursive;
+    font-variant: unset;
+    color: #FD481F;
 }

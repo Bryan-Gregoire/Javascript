@@ -13,6 +13,7 @@ class Game {
             new Dimension(ballWidth, ballHeight), "balle", "ball");
         this.__wall = this.buildWall();
         this.__player = new Player(0, 5);
+        this.__currentLevel = 1;
     }
 
     /**
@@ -37,6 +38,12 @@ class Game {
      * 
      */
     get player() { return this.__player; }
+
+    /**
+     * Get the current level.
+     * 
+     */
+    get level() { return this.__currentLevel; }
 
     /**
      * Random number for x-axis.

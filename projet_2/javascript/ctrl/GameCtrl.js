@@ -26,6 +26,7 @@ class GameCtrl {
         this.__view.addAll(this.__game.wall);
         this.__view.showLives(this.__game.player.live);
         this.__view.showScore(this.__game.player.score);
+        this.__view.showCurrentLevel(this.__game.level);
         this.ballStartWait();
     }
 
