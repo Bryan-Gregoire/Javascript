@@ -53,5 +53,5 @@ class Player {
      * Check if there are still lives.
      * 
      */
-    alive() { return this._live == 0; }
+    death() { return this._live == 0; }
 } 

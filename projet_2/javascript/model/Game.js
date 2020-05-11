@@ -259,4 +259,14 @@ class Game {
         }
     }
 
+    /**
+     * Gives the ball a new position and an upward movement.
+     * 
+     */
+    newPosMovBall() {
+        this.__ball.topLeft.x = this.randomPosX()
+        this.__ball.topLeft.y =  sceneHeight / 2 - ballHeight / 2;
+        this.__ball.movement.deltaX = this.randomDeltaX();
+        this.__ball.movement.reverseY();
+    }
 }

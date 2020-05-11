@@ -8,10 +8,11 @@ class BallCtrl {
    * @param { Game } game - The game.
    * @param { View } view - The view.
    */
-    constructor(game, view) {
+    constructor(game, view, gameCtrl) {
         this._game = game;
         this._view = view;
         this._view.update(this._game.ball);
+        this._gameCtrl = gameCtrl;
     }
 
     /**
@@ -33,11 +34,10 @@ class BallCtrl {
         if (this._game.lost()) {
             this.stop();
             this._view.showLives(this._game.player.live);
-            if (this._game.player.alive()) {
-                this._view.showMessage("You lost");
-            }
-        }
-        if (this._game.win()) {
+            this._game.newPosMovBall();
+            this._view.update(this._game.ball);
+            this.leftLife();
+        } else if (this._game.win()) {
             this.stop();
             this._view.showLives(this._game.player.live);
             this._view.showMessage("You won");
@@ -49,5 +49,18 @@ class BallCtrl {
      */
     stop() {
         clearInterval(this._moveListener);
+    }
+
+    /**
+     * Check if there is life left. If there is still life, can try again.
+     * 
+     */
+    leftLife() {
+        if (this._game.player.death()) {
+            this._view.showMessage("You lost, game over");
+            this.stop();
+        } else {
+            this._gameCtrl.ballStartWait();
+        }
     }
 }
