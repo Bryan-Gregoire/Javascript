@@ -13,3 +13,24 @@ Itération 2
 La méthode ballMove gagnerait à être décomposé en sous algo (pour les conditions par exemple). Difficilement compréhensible en première lecture
 
 5,5/6
+
+Itération 3
+-------------
+
+Pas moyen de recommencer le jeu sans relancer la page, pas de niveaux différents
+
+Sprite.js : Un peu étrange que bounce renvoie une chaine de caractères...
+
+- View.js : pourquoi ne pas avoir utilisé add dans addAll ?
+
+- View.js: update: tu modifies deux fois la propriété left
+
+- Game.js: buildWall: d'ou sort le 72 ? Il faudrai peut être le mettre en constante.
+
+- Game.js : la méthode bounceOnWall a l'air fort compliquée, elle mériterait d'être modularisée.
+
+
+7/10
+
+
+
